@@ -9,3 +9,5 @@ Route::get('/', function () {
 Route::get('/contoh1', function () {
     return view('lp3i');
 });
+
+Route::get('/mahasiswa', [MahasiswaController::class, 'index']);
