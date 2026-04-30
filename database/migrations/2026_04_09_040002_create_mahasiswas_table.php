@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nim') ->unique();
             $table->string('nama', length: 100);
+            $table->string('jurusan', length: 100);
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
             $table->string('nohp', length: 20) ->unique();
