@@ -13,7 +13,8 @@
                             <h6 class="m-0 font-weight-bold text-primary">Form Tambah Mahasiswa</h6>
                         </div>
                         <div class="card-body">
-                            <form>
+                            <form method="POST" action="/mahasiswa">
+                                @csrf
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">NIM</label>
     <input type="text" class="form-control @error('nim') is-invalid @enderror" id="exampleInputEmail1" aria-describedby="emailHelp" name="nim">
@@ -128,7 +129,7 @@
     @enderror
   </div>
 
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-primary">Tambah Data Baru</button>
 </form>
                         </div>
                     </div>

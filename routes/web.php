@@ -18,3 +18,4 @@ Route::get('/contoh1', function () {
 //Modul Mahasiswa
 Route::get('/mahasiswa', [MahasiswaController::class, 'index']);
 Route::get('/mahasiswa/tambah', [MahasiswaController::class, 'create']);
+Route::post('/mahasiswa', [MahasiswaController::class, 'store']);
