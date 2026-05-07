@@ -16,7 +16,7 @@ class Mahasiswas extends Model
         'jurusan',
         'tempat_lahir',
         'tanggal_lahir',
-        'no_hp',
+        'nohp',
         'domisili',
         'email',
         'jenis_kelamin',

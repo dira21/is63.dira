@@ -17,7 +17,7 @@
                                 @csrf
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">NIM</label>
-    <input type="text" class="form-control @error('nim') is-invalid @enderror" id="exampleInputEmail1" aria-describedby="emailHelp" name="nim">
+    <input type="text" class="form-control @error('nim') is-invalid @enderror" id="exampleInputEmail1" aria-describedby="emailHelp" name="nim" value="{{ old('nim') }}">
     @error('nim')
       <div class="alert">
         {{ $message }}
@@ -27,7 +27,7 @@
 
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Nama Lengkap</label>
-    <input type="text" class="form-control @error('nama') is-invalid @enderror" id="exampleInputEmail1" aria-describedby="emailHelp" name="nama">
+    <input type="text" class="form-control @error('nama') is-invalid @enderror" id="exampleInputEmail1" aria-describedby="emailHelp" name="nama" value="{{ old('nama') }}">
     @error('nama')
       <div class="alert">
         {{ $message }}
@@ -40,11 +40,11 @@
     {{-- < class="form-control @error('jurusan') is-invalid @enderror" name="jurusan"> --}}
     <select name="jurusan" class="form-control @error('jurusan') is-invalid @enderror" id="">
       <option value="">--Pilih Jurusan--</option>
-      <option value="Informatika Komputer">Informatika</option>
-      <option value="Sekretaris">Sistem Informasi</option>
-      <option value="Komputer Akuntansi">Komputer Akuntansi</option>
-      <option value="Digital Bisnis">Digital Bisnis</option>
-      <option value="Manajemen">Manajemen</option>
+      <option value="Informatika Komputer" {{ old('jurusan') == 'Informatika Komputer' ? 'selected' : '' }}>Informatika</option>
+      <option value="Sekretaris" {{ old('jurusan') == 'Sekretaris' ? 'selected' : '' }}>Sistem Informasi</option>
+      <option value="Komputer Akuntansi" {{ old('jurusan') == 'Komputer Akuntansi' ? 'selected' : '' }}>Komputer Akuntansi</option>
+      <option value="Digital Bisnis" {{ old('jurusan') == 'Digital Bisnis' ? 'selected' : '' }}>Digital Bisnis</option>
+      <option value="Manajemen" {{ old('jurusan') == 'Manajemen' ? 'selected' : '' }}>Manajemen</option>
     </select>
     @error('jurusan')
       <div class="alert">
@@ -55,7 +55,7 @@
 
 <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Tempat Lahir</label>
-    <input type="text" class="form-control @error('tempat_lahir') is-invalid @enderror" id="exampleInputEmail1" aria-describedby="emailHelp" name="tempat_lahir">
+    <input type="text" class="form-control @error('tempat_lahir') is-invalid @enderror" id="exampleInputEmail1" aria-describedby="emailHelp" name="tempat_lahir" value="{{ old('tempat_lahir') }}">
     @error('tempat_lahir')
       <div class="alert">
         {{ $message }}
@@ -65,7 +65,7 @@
 
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Tanggal Lahir</label>
-    <input type="date" class="form-control @error('tanggal_lahir') is-invalid @enderror" id="exampleInputEmail1" aria-describedby="emailHelp" name="tanggal_lahir">
+    <input type="date" class="form-control @error('tanggal_lahir') is-invalid @enderror" id="exampleInputEmail1" aria-describedby="emailHelp" name="tanggal_lahir" value="{{ old('tanggal_lahir') }}">
     @error('tanggal_lahir')
       <div class="alert">
         {{ $message }}
@@ -74,9 +74,9 @@
   </div>
 
   <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">No Hp</label>
-    <input type="text" class="form-control @error('nohp') is-invalid @enderror" id="exampleInputEmail1" aria-describedby="emailHelp" name="nohp">
-    @error('nohp')
+    <label for="exampleInputEmail1" class="form-label">No. Hp</label>
+    <input type="text" class="form-control @error('no_handphone') is-invalid @enderror" id="exampleInputEmail1" aria-describedby="emailHelp" name="no_handphone" value="{{ old('no_handphone') }}">
+    @error('no_handphone')
       <div class="alert">
         {{ $message }}
       </div>
@@ -85,7 +85,7 @@
 
    <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Domisili</label>
-    <input type="text" class="form-control @error('domisili') is-invalid @enderror" id="exampleInputEmail1" aria-describedby="emailHelp" name="domisili">
+    <input type="text" class="form-control @error('domisili') is-invalid @enderror" id="exampleInputEmail1" aria-describedby="emailHelp" name="domisili" value="{{ old('domisili') }}">
     @error('domisili')
       <div class="alert">
         {{ $message }}
@@ -95,7 +95,7 @@
 
    <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Email</label>
-    <input type="email" class="form-control @error('email') is-invalid @enderror" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
+    <input type="email" class="form-control @error('email') is-invalid @enderror" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" value="{{ old('email') }}">
     @error('email')
       <div class="alert">
         {{ $message }}
@@ -106,22 +106,27 @@
 <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Jenis Kelamin</label>
   <div class="form-check">
-  <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault1">
+  <input class="form-check-input" type="radio" name="jenis_kelamin" id="radioDefault1" value="Perempuan" {{ old('jenis_kelamin') == 'Perempuan' ? 'checked' : '' }}>
   <label class="form-check-label" for="radioDefault1">
     Perempuan
   </label>
 </div>
 <div class="form-check">
-  <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault2" checked>
+  <input class="form-check-input" type="radio" name="jenis_kelamin" id="radioDefault2" value="Laki-Laki" {{ old('jenis_kelamin', 'Laki-Laki') == 'Laki-Laki' ? 'checked' : '' }}>
   <label class="form-check-label" for="radioDefault2">
     Laki-Laki
   </label>
 </div>
+  @error('jenis_kelamin')
+      <div class="alert">
+        {{ $message }}
+      </div>
+    @enderror
 </div>
    
  <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Tahun Masuk</label>
-    <input type="number" class="form-control @error('tahun_masuk') is-invalid @enderror" id="exampleInputEmail1" aria-describedby="emailHelp" name="tahun_masuk">
+    <input type="number" class="form-control @error('tahun_masuk') is-invalid @enderror" id="exampleInputEmail1" aria-describedby="emailHelp" name="tahun_masuk" value="{{ old('tahun_masuk') }}">
     @error('tahun_masuk')
       <div class="alert">
         {{ $message }}

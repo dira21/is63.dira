@@ -19,3 +19,6 @@ Route::get('/contoh1', function () {
 Route::get('/mahasiswa', [MahasiswaController::class, 'index']);
 Route::get('/mahasiswa/tambah', [MahasiswaController::class, 'create']);
 Route::post('/mahasiswa', [MahasiswaController::class, 'store']);
+Route::get('/mahasiswa/edit/{id}', [MahasiswaController::class, 'edit']);
+Route::put('/mahasiswa/{id}', [MahasiswaController::class, 'update']);
+Route::delete('/mahasiswa/{id}', [MahasiswaController::class, 'destroy']);
