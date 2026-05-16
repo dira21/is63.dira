@@ -42,11 +42,9 @@
                     <label for="exampleInputEmail1" class="form-label">Jurusan</label>
                     <select name="jurusan" class="form-control @error('jurusan') is-invalid @enderror" id="">
                         <option value="">Pilih Jurusan</option>
-                        <option {{ $mahasiswa->jurusan == 'Informatika Komputer' ? 'selected' : '' }} value="Informatika Komputer">Informatika Komputer</option>
-                        <option {{ $mahasiswa->jurusan == 'Sekretaris' ? 'selected' : '' }} value="Sekretaris">Sekretaris</option>
-                        <option {{ $mahasiswa->jurusan == 'Komputer Akuntansi' ? 'selected' : '' }} value="Komputer Akuntansi">Komputer Akuntansi</option>
-                        <option {{ $mahasiswa->jurusan == 'Manajemen Perkantoran' ? 'selected' : '' }} value="Manajemen Perkantoran">Manajemen Perkantoran</option>
-                        <option {{ $mahasiswa->jurusan == 'Komunikasi Bisnis Digital' ? 'selected' : '' }} value="Komunikasi Bisnis Digital">Komunikasi Bisnis Digital</option>
+                        @foreach($jurusan as $item)
+                            <option value="{{ $item->nama }}" {{ $mahasiswa->jurusan == $item->nama ? 'selected' : '' }}>{{ $item->nama }}</option>
+                        @endforeach
                     </select>
                     @error('jurusan')
                         <div class="alert">

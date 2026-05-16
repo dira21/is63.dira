@@ -1,16 +1,16 @@
 @extends('layout.master')
 @section('title')
-    Data Mahasiswa
+    Data Jurusan
 @endsection
 
 @section('judul')
-    Data Mahasiswa
+    Data Jurusan
 @endsection
 
 @section('konten')
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary"><a href="/mahasiswa/tambah" class="btn btn-outline-primary">Tambah Data</a></h6>
+            <h6 class="m-0 font-weight-bold text-primary"><a href="/jurusan/tambah" class="btn btn-outline-primary">Tambah Data</a></h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -18,39 +18,31 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Nama</th>
-                            <th>NIM</th>
-                            <th>Jurusan</th>
-                            <th>Tempat, Tanggal Lahir</th>
+                            <th>Kode</th>
+                            <th>Nama Jurusan</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($mahasiswa as $x )
+                        @forelse ($jurusan as $item)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $x->nama }}</td>
-                                <td>{{ $x->nim }}</td>
-                                <td>{{ $x->jurusan }}</td>
-                                <td>{{ $x->tempat_lahir }}, {{ $x->tanggal_lahir }}</td>
+                                <td>{{ $item->kode }}</td>
+                                <td>{{ $item->nama }}</td>
                                 <td>
-                                    <a href="/mahasiswa/edit/{{ $x->id }}" class="btn btn-outline-info">Edit</a>
-                                    
-                                     <form action="/mahasiswa/{{ $x->id }}" method="POST" style="display: inline;">
+                                    <a href="/jurusan/edit/{{ $item->id }}" class="btn btn-outline-info">Edit</a>
+                                    <form action="/jurusan/{{ $item->id }}" method="POST" style="display: inline;">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Yakin ingin menghapus data ini?')">Hapus</button>
+                                        <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Yakin ingin menghapus jurusan ini?')">Hapus</button>
                                     </form>
                                 </td>
                             </tr>
-
                         @empty
                             <tr>
-                                <td colspan="6" class="text-center">Data mahasiswa tidak ditemukan</td>
+                                <td colspan="3" class="text-center">Data jurusan tidak ditemukan</td>
                             </tr>
                         @endforelse
-
-
                     </tbody>
                 </table>
             </div>
@@ -59,22 +51,20 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
     <script>
-        //message with sweetalert
         @if(session('success'))
         Swal.fire({
-            icon: "success",
-            title: "BERHASIL",
-            text: "{{ session('success') }}",
+            icon: 'success',
+            title: 'BERHASIL',
+            text: '{{ session('success') }}',
             showConfirmButton: false,
             timer: 2000
         });
         @elseif(session('error'))
         Swal.fire({
-            icon: "error",
-            title: "GAGAL!",
-            text: "{{ session('error') }}",
+            icon: 'error',
+            title: 'GAGAL!',
+            text: '{{ session('error') }}',
             showConfirmButton: false,
             timer: 2000
         });

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Mahasiswas;
+use App\Models\Jurusan;
 
 class MahasiswaController extends Controller
 {
@@ -21,7 +22,8 @@ class MahasiswaController extends Controller
      */
     public function create()
     {
-        return view ('mahasiswa.form');
+        $jurusan = Jurusan::all();
+        return view('mahasiswa.form', compact('jurusan'));
     }
 
     /**
@@ -35,7 +37,7 @@ class MahasiswaController extends Controller
         $request->validate([
             'nim' => 'required|unique:mahasiswas,nim',
             'nama' => 'required',
-            'jurusan' => 'required',
+            'jurusan' => 'required|exists:jurusans,nama',
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required|date',
             'no_handphone' => 'required|numeric',
@@ -75,9 +77,9 @@ class MahasiswaController extends Controller
      */
     public function edit(string $id)
     {
-        //disini hasil eksekusi dari klik tombol edit data di form mahasiswa.index
         $mahasiswa = Mahasiswas::find($id);
-        return view('mahasiswa.edit', compact('mahasiswa'));
+        $jurusan = Jurusan::all();
+        return view('mahasiswa.edit', compact('mahasiswa', 'jurusan'));
     }
 
     /**
@@ -88,7 +90,7 @@ class MahasiswaController extends Controller
         $request->validate([
             'nim' => 'required|unique:mahasiswas,nim,' . $id,
             'nama' => 'required',
-            'jurusan' => 'required',
+            'jurusan' => 'required|exists:jurusans,nama',
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required|date',
             'no_handphone' => 'required|numeric|unique:mahasiswas,nohp,' . $id,

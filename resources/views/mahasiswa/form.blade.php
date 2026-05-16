@@ -37,14 +37,11 @@
 
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Jurusan</label>
-    {{-- < class="form-control @error('jurusan') is-invalid @enderror" name="jurusan"> --}}
     <select name="jurusan" class="form-control @error('jurusan') is-invalid @enderror" id="">
       <option value="">--Pilih Jurusan--</option>
-      <option value="Informatika Komputer" {{ old('jurusan') == 'Informatika Komputer' ? 'selected' : '' }}>Informatika</option>
-      <option value="Sekretaris" {{ old('jurusan') == 'Sekretaris' ? 'selected' : '' }}>Sistem Informasi</option>
-      <option value="Komputer Akuntansi" {{ old('jurusan') == 'Komputer Akuntansi' ? 'selected' : '' }}>Komputer Akuntansi</option>
-      <option value="Digital Bisnis" {{ old('jurusan') == 'Digital Bisnis' ? 'selected' : '' }}>Digital Bisnis</option>
-      <option value="Manajemen" {{ old('jurusan') == 'Manajemen' ? 'selected' : '' }}>Manajemen</option>
+      @foreach($jurusan as $item)
+        <option value="{{ $item->nama }}" {{ old('jurusan') == $item->nama ? 'selected' : '' }}>{{ $item->nama }}</option>
+      @endforeach
     </select>
     @error('jurusan')
       <div class="alert">
